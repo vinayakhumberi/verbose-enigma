@@ -46,10 +46,10 @@ export default () => {
       const localCorrections = [...corrections];
       let actualCounter = 0;
       let currCorrcPtr = 0;
-      const someFunc = (node,) => {
+      const customFixer = (node) => {
         return node?.childNodes.forEach((item) => {
           if (item.hasChildNodes()) {
-            someFunc(item);
+            customFixer(item);
           } else {
             if (currCorrcPtr < localCorrections.length) {
               const textLength = item.textContent.length;
@@ -93,7 +93,7 @@ export default () => {
           }
         });
       };
-      someFunc(rteRef.current);
+      customFixer(rteRef.current);
     }
   }, [fix]);
   return (
